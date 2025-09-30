@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PoHeaderBrand } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'planning-poker';
+  brand: PoHeaderBrand = {
+    title: 'Planning Poker'
+  };
 }
