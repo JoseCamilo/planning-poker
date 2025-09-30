@@ -1,9 +1,66 @@
 <po-header
   [p-brand]="brand"
+  [p-hide-button-menu]="true"
 ></po-header>
 
-<div class="po-wrapper">
+<div class="my-wrapper">
   <po-page-default>
-      Hello World!!!
+
+    <div class="po-md-6">
+      <po-container class="po-md-12">
+        <div class="po-row">
+          <div class="po-font-subtitle">Cards</div>
+        </div>
+        <div class="po-row">
+          <div class="po-font-text">Toque em um Cartão para votar!</div>
+        </div>
+  
+        <div class="po-row po-mt-4">
+          <po-button class="po-md-3 po-mt-2" p-label="1"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="2"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="3"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="5"> </po-button>
+        </div>
+  
+        <div class="po-row">
+          <po-button class="po-md-3 po-mt-2" p-label="8"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="13"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="?"> </po-button>
+        </div>
+      </po-container>
+
+      <po-button class="po-md-6 po-mt-2" p-icon="an an-eye-slash" p-label="Ocultar Votos" *ngIf="showVotes" (p-click)="showVotes = !showVotes"></po-button>
+      <po-button class="po-md-6 po-mt-2" p-icon="an an-eye" p-label="Revelar Votos" *ngIf="!showVotes" (p-click)="showVotes = !showVotes"></po-button>
+      <po-button class="po-md-6 po-mt-2" p-icon="an an-trash" p-label="Resetar Votos"></po-button>
+    </div>
+
+    <div class="po-md-6">
+      <po-container class="po-md-12">
+        <div class="po-row">
+          <div class="po-font-subtitle">Participantes</div>
+        </div>
+        <div class="po-row">
+          <div class="po-font-text">Votação do time!</div>
+        </div>
+  
+        <div class="po-row po-mt-4">
+          <po-table class="po-md-12" 
+            [p-items]="votes"
+            p-hide-columns-manager
+            [p-columns]="columns"
+            >
+
+            <ng-template  p-table-column-template p-property="vote" let-value>
+              
+              <span *ngIf="!showVotes && value == ''">Não votou</span>
+              <span *ngIf="!showVotes && value != ''">Votou</span>
+              <span *ngIf="showVotes" [innerText]="value"></span>
+            </ng-template>
+
+          </po-table>
+        </div>
+      </po-container>
+    </div>
+    
   </po-page-default>
 </div>

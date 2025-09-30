@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PoHeaderBrand } from '@po-ui/ng-components';
+import { PoHeaderBrand, PoTableColumn } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +11,27 @@ export class AppComponent {
   brand: PoHeaderBrand = {
     title: 'Planning Poker'
   };
+  showVotes: boolean = false;
+
+  columns: PoTableColumn[] = [
+    {
+      label: 'Nome',
+      property: 'name'
+    },
+    {
+      label: 'Voto',
+      property: 'vote',
+      type: 'columnTemplate'
+    },
+  ];
+
+  votes: any = [
+    { name: 'Ze', vote: '3' },
+    { name: 'Ze', vote: '' },
+    { name: 'Ze', vote: '3' },
+    { name: 'Ze', vote: '' },
+    { name: 'Ze', vote: '3' }
+  ];
+
+
 }

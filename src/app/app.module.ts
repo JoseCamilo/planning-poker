@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PoModule } from '@po-ui/ng-components';
+import { PoButtonModule, PoContainerModule, PoHeaderModule, PoPageModule, PoTableModule, PoWidgetModule } from '@po-ui/ng-components';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,12 @@ import { PoModule } from '@po-ui/ng-components';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PoModule
+    PoPageModule,
+    PoHeaderModule,
+    PoContainerModule,
+    PoWidgetModule,
+    PoButtonModule,
+    PoTableModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
