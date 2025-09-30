@@ -4,13 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PoButtonModule, PoContainerModule, PoHeaderModule, PoPageModule, PoTableModule, PoWidgetModule } from '@po-ui/ng-components';
+import { PoButtonModule, PoContainerModule, PoFieldModule, PoHeaderModule, PoModalModule, PoPageModule, PoTableModule, PoTooltipModule, PoWidgetModule } from '@po-ui/ng-components';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     PoPageModule,
@@ -18,7 +20,10 @@ import { PoButtonModule, PoContainerModule, PoHeaderModule, PoPageModule, PoTabl
     PoContainerModule,
     PoWidgetModule,
     PoButtonModule,
-    PoTableModule
+    PoTableModule,
+    PoModalModule,
+    PoFieldModule,
+    PoTooltipModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

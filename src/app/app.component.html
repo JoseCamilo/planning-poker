@@ -6,7 +6,7 @@
 <div class="my-wrapper">
   <po-page-default>
 
-    <div class="po-md-6">
+    <div class="po-md-6 po-mt-2">
       <po-container class="po-md-12">
         <div class="po-row">
           <div class="po-font-subtitle">Cards</div>
@@ -16,31 +16,32 @@
         </div>
   
         <div class="po-row po-mt-4">
-          <po-button class="po-md-3 po-mt-2" p-label="1"> </po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="2"> </po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="3"> </po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="5"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="1" (p-click)="vote('1')"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="2" (p-click)="vote('2')"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="3" (p-click)="vote('3')"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="5" (p-click)="vote('5')"> </po-button>
         </div>
   
         <div class="po-row">
-          <po-button class="po-md-3 po-mt-2" p-label="8"> </po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="13"> </po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="?"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="8" (p-click)="vote('8')"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="13" (p-click)="vote('13')"> </po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="?" (p-click)="vote('?')"> </po-button>
         </div>
       </po-container>
 
-      <po-button class="po-md-6 po-mt-2" p-icon="an an-eye-slash" p-label="Ocultar Votos" *ngIf="showVotes" (p-click)="showVotes = !showVotes"></po-button>
-      <po-button class="po-md-6 po-mt-2" p-icon="an an-eye" p-label="Revelar Votos" *ngIf="!showVotes" (p-click)="showVotes = !showVotes"></po-button>
-      <po-button class="po-md-6 po-mt-2" p-icon="an an-trash" p-label="Resetar Votos"></po-button>
+      <po-button class="po-md-6 po-mt-2" p-icon="an an-eye-slash" p-label="Ocultar Votos" *ngIf="showVotes" (p-click)="showVotes = !showVotes; persistData()"></po-button>
+      <po-button class="po-md-6 po-mt-2" p-icon="an an-eye" p-label="Revelar Votos" *ngIf="!showVotes" (p-click)="showVotes = !showVotes; persistData()"></po-button>
+      <po-button class="po-md-6 po-mt-2" p-icon="an an-trash" p-label="Resetar Votos" (p-click)="resetVotes()"></po-button>
     </div>
 
-    <div class="po-md-6">
+    <div class="po-md-6 po-mt-2">
       <po-container class="po-md-12">
         <div class="po-row">
-          <div class="po-font-subtitle">Participantes</div>
+          <div class="po-sm-9 po-font-subtitle">Participantes</div>
+          <po-button class="po-sm-3" p-icon="an an-trash" (p-click)="resetParticipants()" p-kind="tertiary" p-tooltip="Limpar participantes"></po-button>
         </div>
         <div class="po-row">
-          <div class="po-font-text">Votação do time!</div>
+          <div class="po-sm-12 po-font-text">Votação do time!</div>
         </div>
   
         <div class="po-row po-mt-4">
@@ -48,13 +49,14 @@
             [p-items]="votes"
             p-hide-columns-manager
             [p-columns]="columns"
+            [p-literals]="customLiterals"
             >
 
             <ng-template  p-table-column-template p-property="vote" let-value>
               
               <span *ngIf="!showVotes && value == ''">Não votou</span>
               <span *ngIf="!showVotes && value != ''">Votou</span>
-              <span *ngIf="showVotes" [innerText]="value"></span>
+              <span *ngIf="showVotes">{{value}}</span>
             </ng-template>
 
           </po-table>
@@ -64,3 +66,16 @@
     
   </po-page-default>
 </div>
+
+<po-modal
+  #modalname
+  p-title="Entrar na sala"
+  [p-primary-action]="confirmName"
+  [p-hide-close]="true">
+  <po-input
+    name="input"
+    p-label="Nome"
+    p-placehoder="Insira seu nome"
+    [(ngModel)]="name"
+    (keyup.enter)="confirmNameAction()"></po-input>
+</po-modal>
