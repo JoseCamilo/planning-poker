@@ -3,8 +3,8 @@
   [p-hide-button-menu]="true"
 ></po-header>
 
-<div class="my-wrapper">
-  <po-page-default>
+<po-page-default>
+    <div class="my-wrapper">
 
     <div class="po-md-6 po-mt-2">
       <po-container class="po-md-12">
@@ -64,8 +64,10 @@
       </po-container>
     </div>
     
-  </po-page-default>
-</div>
+    <div class="po-row" [style.height.vh]="25"></div>
+
+  </div>
+</po-page-default>
 
 <po-modal
   #modalname
@@ -79,3 +81,19 @@
     [(ngModel)]="name"
     (keyup.enter)="confirmNameAction()"></po-input>
 </po-modal>
+
+<div *ngIf="showInstallBanner" class="pwa-banner">
+  <div class="pwa-header">
+    <img src="/icons/icon-192x192.png" alt="Planning Poker" class="pwa-icon">
+    <h3 class="pwa-title">Instalar Planning Poker</h3>
+  </div>
+  <p class="pwa-message">
+    Instale agora e melhore sua produtividade!
+  </p>
+  <div class="pwa-actions">
+    <button class="pwa-button" (click)="installApp()">Instalar</button>
+    <button class="pwa-button" (click)="closeBanner()">Fechar</button>
+  </div>
+</div>
+
+
