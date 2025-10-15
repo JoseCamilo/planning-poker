@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/planning-poker",
+    "public": "dist/planning-poker/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
