@@ -1,3 +1,76 @@
 .my-wrapper {
     padding-top: 3.5rem;
 }
+
+.pwa-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 340px;
+  background-color: #ffffff;
+  border: 2px solid #6e3a8c;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  padding: 16px;
+  animation: slideUp 0.5s ease;
+  z-index: 1000;
+}
+
+.pwa-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pwa-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.pwa-title {
+  font-size: 16px;
+  color: #6e3a8c;
+  margin: 0;
+}
+
+.pwa-message {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.pwa-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.pwa-button {
+  background-color: transparent;
+  border: none;
+  color: #6e3a8c;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.pwa-button:hover {
+  background-color: #f2e9ff;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

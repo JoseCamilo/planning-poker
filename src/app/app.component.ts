@@ -47,6 +47,9 @@ export class AppComponent implements OnInit {
     label: 'Confirmar'
   };
 
+  showInstallBanner = false;
+  deferredPrompt: any;
+
   @ViewChild('modalname') modalNameComponent!: PoModalComponent;
   constructor() {}
 
@@ -75,6 +78,12 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.modalNameComponent.open();       
     }, 1000);
+  
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.deferredPrompt = e;
+      this.showInstallBanner = true;
+    });
   }
 
   persistData() {
@@ -120,4 +129,25 @@ export class AppComponent implements OnInit {
     this.votes = [];
     this.persistData();
   }
+
+  installApp() {
+    if (this.deferredPrompt) {
+      this.deferredPrompt.prompt();
+      this.deferredPrompt.userChoice.then((choiceResult: any) => {
+        // if (choiceResult.outcome === 'accepted') {
+        //   console.log('Usuário aceitou instalar');
+        // } else {
+        //   console.log('Usuário recusou instalar');
+        // }
+        this.deferredPrompt = null;
+        this.showInstallBanner = false;
+      });
+    }
+  }
+
+  closeBanner(): void {
+    this.showInstallBanner = false;
+  }
+
 }
+
