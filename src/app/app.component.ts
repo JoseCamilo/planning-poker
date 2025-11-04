@@ -97,7 +97,9 @@ export class AppComponent implements OnInit {
     }
   }
 
+  currentVote = '';
   vote(value: string) {
+    this.currentVote = value;
     if (this.votes == null) {
       this.votes = [];
     }

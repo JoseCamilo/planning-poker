@@ -16,17 +16,17 @@
         </div>
   
         <div class="po-row po-mt-4">
-          <po-button class="po-md-3 po-mt-2" p-label="1" (p-click)="vote('1')"></po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="2" (p-click)="vote('2')"></po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="3" (p-click)="vote('3')"></po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="5" (p-click)="vote('5')"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="1" (p-click)="vote('1')" [p-kind]="currentVote == '1' ? 'primary' : 'secondary'"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="2" (p-click)="vote('2')" [p-kind]="currentVote == '2' ? 'primary' : 'secondary'"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="3" (p-click)="vote('3')" [p-kind]="currentVote == '3' ? 'primary' : 'secondary'"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="5" (p-click)="vote('5')" [p-kind]="currentVote == '5' ? 'primary' : 'secondary'"></po-button>
         </div>
   
         <div class="po-row">
-          <po-button class="po-md-3 po-mt-2" p-label="8" (p-click)="vote('8')"></po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="13" (p-click)="vote('13')"></po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="21" (p-click)="vote('21')"></po-button>
-          <po-button class="po-md-3 po-mt-2" p-label="?" (p-click)="vote('?')"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="8" (p-click)="vote('8')" [p-kind]="currentVote == '8' ? 'primary' : 'secondary'"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="13" (p-click)="vote('13')" [p-kind]="currentVote == '13' ? 'primary' : 'secondary'"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="21" (p-click)="vote('21')" [p-kind]="currentVote == '21' ? 'primary' : 'secondary'"></po-button>
+          <po-button class="po-md-3 po-mt-2" p-label="?" (p-click)="vote('?')" [p-kind]="currentVote == '?' ? 'primary' : 'secondary'"></po-button>
         </div>
       </po-container>
 
