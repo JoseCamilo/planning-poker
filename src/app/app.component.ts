@@ -47,10 +47,18 @@ export class AppComponent implements OnInit {
     label: 'Confirmar'
   };
 
+  confirmMessage: PoModalAction = {
+    action: () => {
+      this.confirmMessageAction();
+    },
+    label: 'Confirmar'
+  };
+
   showInstallBanner = false;
   deferredPrompt: any;
 
   @ViewChild('modalname') modalNameComponent!: PoModalComponent;
+  @ViewChild('modalmessage') modalMessageComponent!: PoModalComponent;
   constructor() {}
 
   ngOnInit() {
@@ -97,9 +105,18 @@ export class AppComponent implements OnInit {
     }
   }
 
+  confirmMessageAction() {
+    this.modalMessageComponent.close();
+  }
+
   currentVote = '';
   vote(value: string) {
     this.currentVote = value;
+
+    if (value === '1' || value === '2' || value === '3') {
+      this.modalMessageComponent.open();
+    }
+
     if (this.votes == null) {
       this.votes = [];
     }

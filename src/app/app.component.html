@@ -78,9 +78,19 @@
   <po-input
     name="input"
     p-label="Nome"
-    p-placehoder="Insira seu nome"
+    p-placeholder="Insira seu nome"
     [(ngModel)]="name"
     (keyup.enter)="confirmNameAction()"></po-input>
+</po-modal>
+
+<po-modal
+  #modalmessage
+  p-title="Alerta de Pontuação"
+  [p-primary-action]="confirmMessage"
+  [p-hide-close]="true">
+  <p>
+    Essa pontuação é muito baixa, você tem certeza que deseja votar {{currentVote}}?
+  </p>
 </po-modal>
 
 <div *ngIf="showInstallBanner" class="pwa-banner">
