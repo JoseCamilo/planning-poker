@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   votes: any = [];
   database: any;
   showVotes: boolean = false;
+  matchVotes: boolean = false;
 
   brand: PoHeaderBrand = {
     title: 'Planning Poker'
@@ -47,18 +48,10 @@ export class AppComponent implements OnInit {
     label: 'Confirmar'
   };
 
-  confirmMessage: PoModalAction = {
-    action: () => {
-      this.confirmMessageAction();
-    },
-    label: 'Confirmar'
-  };
-
   showInstallBanner = false;
   deferredPrompt: any;
 
   @ViewChild('modalname') modalNameComponent!: PoModalComponent;
-  @ViewChild('modalmessage') modalMessageComponent!: PoModalComponent;
   constructor() {}
 
   ngOnInit() {
@@ -81,6 +74,12 @@ export class AppComponent implements OnInit {
 
       this.votes = data.votes || [];
       this.showVotes = data.showVotes || false;
+
+      if (this.votes.length > 0) {
+        const firstVote = this.votes[0].vote;
+        const allVotesEqual = this.votes.every((vote: { vote: string; }) => vote.vote === firstVote);
+        this.matchVotes = allVotesEqual && firstVote !== '';
+      }
     });
 
     setTimeout(() => {
@@ -105,17 +104,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  confirmMessageAction() {
-    this.modalMessageComponent.close();
-  }
-
   currentVote = '';
   vote(value: string) {
     this.currentVote = value;
-
-    if (value === '1' || value === '2' || value === '3') {
-      this.modalMessageComponent.open();
-    }
 
     if (this.votes == null) {
       this.votes = [];

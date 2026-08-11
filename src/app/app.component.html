@@ -57,7 +57,7 @@
               
               <span *ngIf="!showVotes && value == ''">Não votou</span>
               <span *ngIf="!showVotes && value != ''">Votou</span>
-              <span *ngIf="showVotes">{{value}}</span>
+              <span *ngIf="showVotes" [ngClass]="{'match-votes': matchVotes}">{{value}}</span>
             </ng-template>
 
           </po-table>
@@ -81,16 +81,6 @@
     p-placeholder="Insira seu nome"
     [(ngModel)]="name"
     (keyup.enter)="confirmNameAction()"></po-input>
-</po-modal>
-
-<po-modal
-  #modalmessage
-  p-title="Alerta de Pontuação"
-  [p-primary-action]="confirmMessage"
-  [p-hide-close]="true">
-  <p>
-    Essa pontuação é muito baixa, você tem certeza que deseja votar {{currentVote}}?
-  </p>
 </po-modal>
 
 <div *ngIf="showInstallBanner" class="pwa-banner">
