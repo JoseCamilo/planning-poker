@@ -75,10 +75,19 @@ export class AppComponent implements OnInit {
       this.votes = data.votes || [];
       this.showVotes = data.showVotes || false;
 
+      // Style Match Votes
       if (this.votes.length > 0) {
-        const firstVote = this.votes[0].vote;
-        const allVotesEqual = this.votes.every((vote: { vote: string; }) => vote.vote === firstVote);
-        this.matchVotes = allVotesEqual && firstVote !== '';
+        let firstVote = '';
+        
+        for (let i = 0; i < this.votes.length; i++) {
+          if (this.votes[i].vote !== '') {
+            firstVote = this.votes[i].vote;
+            break;
+          }
+        }
+        
+        const allVotesEqual = this.votes.every((vote: { vote: string; }) => vote.vote === firstVote || vote.vote === '');
+        this.matchVotes = allVotesEqual;
       }
     });
 
